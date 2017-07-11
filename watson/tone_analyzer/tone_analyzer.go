@@ -23,7 +23,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/liviosoares/go-watson-sdk/watson"
+	"github.com/NathanRThomas/go-watson-sdk/watson"
 )
 
 type Client struct {
@@ -32,8 +32,8 @@ type Client struct {
 }
 
 const defaultMajorVersion = "v3"
-const defaultMinorVersion = "2016-02-11"
-const defaultUrl = "https://gateway.watsonplatform.net/tone-analyzer-beta/api"
+const defaultMinorVersion = "2016-05-19"
+const defaultUrl = "https://gateway.watsonplatform.net/tone-analyzer/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
