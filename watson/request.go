@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"strconv"
 	"unicode/utf8"
+    "crypto/tls"
 )
 
 const goSdkVersion = "0.1.0"
@@ -126,7 +127,15 @@ func (c *Client) MakeRequest(method string, path string, body io.Reader, header 
 		req.Header.Set(key, header[key][0])
 	}
 	req.Header.Set("User-Agent", "watson-developer-cloud-go-"+goSdkVersion)
-	resp, err := http.DefaultClient.Do(req)
+
+	//resp, err := http.DefaultClient.Do(req)
+
+    tr := &http.Transport{
+        TLSClientConfig: &tls.Config{InsecureSkipVerify : true},
+    }
+    client := &http.Client{Transport: tr}
+    resp, err := client.Do(req)
+
 	if err != nil {
 		return nil, err
 	}
